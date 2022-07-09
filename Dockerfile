@@ -5,7 +5,7 @@ FROM centos:centos8.2.2004
 COPY CentOS-* /etc/yum.repos.d/
 
 # Instalando postfix
-RUN yum -y install postfix; yum clean all
+RUN yum -y install postfix; yum clean all; sed -i "/inet_interfaces = all/s/^#//" /etc/postfix/main.cf; sed -i "/inet_interfaces = localhost/s/^/#/" /etc/postfix/main.cf
 
 # Creando los volumenes
 VOLUME ["/etc/postfix/", "/etc/pki/"]
@@ -14,9 +14,9 @@ VOLUME ["/etc/postfix/", "/etc/pki/"]
 EXPOSE 25
 
 # modificando para que escuche por todas las ips
-RUN  sed -i "/inet_interfaces = all/s/^#//" /etc/postfix/main.cf; sed -i "/inet_interfaces = localhost/s/^/#/" /etc/postfix/main.cf
 
-# ejecución
+
+# ejecuciÃ³n
 CMD ["/usr/sbin/postfix","start"]
 
 
