@@ -14,7 +14,7 @@ VOLUME ["/etc/postfix/", "/etc/pki/"]
 EXPOSE 25
 
 # modificando para que escuche por todas las ips
-RUN  sed -i '/inet_interfaces = all/s/^#//' /etc/postfix/main.cf; sed -i '/inet_interfaces = localhost/s/^/#/' /etc/postfix/main.cf
+RUN  sed -i "/inet_interfaces = all/s/^#//" /etc/postfix/main.cf; sed -i "/inet_interfaces = localhost/s/^/#/" /etc/postfix/main.cf
 
 # ejecución
 CMD ["/usr/sbin/postfix","start"]
