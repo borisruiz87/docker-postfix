@@ -1,20 +1,17 @@
 # Postfix con Base CentOS 8.2
-FROM centos:centos8.2.2004
-
-# Sustituyendo los Repo de Centos8
-COPY CentOS-* /etc/yum.repos.d/
+FROM alpine:latest
 
 # Instalando postfix
-RUN yum -y install postfix; yum clean all; sed -i "/inet_interfaces = all/s/^#//" /etc/postfix/main.cf; sed -i "/inet_interfaces = localhost/s/^/#/" /etc/postfix/main.cf
+RUN apk add --update postfix && apk add --update postfix-policyd-spf-perl && rm -rf /var/cache/apk/*
+
+#adicionando el usuario para el uso en el spf
+RUN adduser -H -D -s /sbin/nologin policyd-spf
 
 # Creando los volumenes
-VOLUME ["/etc/postfix/", "/etc/pki/"]
+VOLUME ["/etc/postfix/", "/var/log/"]
 
 # Exponiendo el puerto 25
 EXPOSE 25
-
-# modificando para que escuche por todas las ips
-
 
 # ejecución
 CMD ["/usr/sbin/postfix","start"]
