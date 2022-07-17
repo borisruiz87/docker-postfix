@@ -5,7 +5,7 @@ FROM alpine:latest
 RUN apk add --update bash postfix postfix-policyd-spf-perl && rm -rf /var/cache/apk/*
 
 # adicionando el main.cf y master.cf
-COPY *.cf /etc/postfix/
+#COPY *.cf /etc/postfix/
 
 # incorporando la linea en el transport map y mapeandolo
 RUN echo "mycubantrip.com  lmtp:[127.0.0.1]" >> /etc/postfix/transport && postmap /etc/postfix/transport
