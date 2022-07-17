@@ -20,7 +20,7 @@ VOLUME ["/etc/postfix/", "/var/log/", "/etc/ssl/"]
 EXPOSE 25
 
 # ejecución
-CMD ["/usr/sbin/postfix","start"]
+CMD ["sh","-c","/usr/sbin/postfix start"]
 
 
 
