@@ -394,7 +394,8 @@ relay_domains = $mydomain
 #
 # See the discussion in the ADDRESS_REWRITING_README document.
 
-transport_maps = hash:/etc/postfix/transport
+# transport_maps = hash:/etc/postfix/transport
+transport_maps = lmdb:/etc/postfix/transport
 
 # ALIAS DATABASE
 #
@@ -737,8 +738,8 @@ maillog_file=/var/log/maillog
 
 # Lineas de Dovecot.
 smtpd_use_tls=yes
-smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
-smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
+smtp_tls_session_cache_database = lmdb:${data_directory}/smtp_scache
+smtpd_tls_session_cache_database = lmdb:${data_directory}/smtpd_scache
 smtp_tls_session_cache_timeout = 86400s
 smtpd_tls_session_cache_timeout = 86400s
 smtpd_tls_loglevel = 2
