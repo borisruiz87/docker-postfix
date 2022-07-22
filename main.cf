@@ -688,6 +688,45 @@ sample_directory = /etc/postfix
 # readme_directory: The location of the Postfix README files.
 #
 readme_directory = /usr/share/doc/postfix/readme
+
+# TLS CONFIGURATION
+#
+# Basic Postfix TLS configuration by default with self-signed certificate
+# for inbound SMTP and also opportunistic TLS for outbound SMTP.
+
+# The full pathname of a file with the Postfix SMTP server RSA certificate
+# in PEM format. Intermediate certificates should be included in general,
+# the server certificate first, then the issuing CA(s) (bottom-up order).
+#
+smtpd_tls_cert_file = /etc/ssl/certs/postfix_public_cert.pem
+
+# The full pathname of a file with the Postfix SMTP server RSA private key
+# in PEM format. The private key must be accessible without a pass-phrase,
+# i.e. it must not be encrypted.
+#
+smtpd_tls_key_file = /etc/ssl/private/postfix_private_key.pem
+
+# Announce STARTTLS support to remote SMTP clients, but do not require that
+# clients use TLS encryption (opportunistic TLS inbound).
+#
+smtpd_tls_security_level = may
+
+# Directory with PEM format Certification Authority certificates that the
+# Postfix SMTP client uses to verify a remote SMTP server certificate.
+#
+smtp_tls_CApath = /etc/ssl/certs
+
+# The full pathname of a file containing CA certificates of root CAs
+# trusted to sign either remote SMTP server certificates or intermediate CA
+# certificates.
+#
+smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
+
+# Use TLS if this is supported by the remote SMTP server, otherwise use
+# plaintext (opportunistic TLS outbound).
+#
+
+
 inet_protocols = ipv4
 shlib_directory = /usr/lib/postfix
 meta_directory = /etc/postfix
