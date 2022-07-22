@@ -2,7 +2,7 @@
 FROM alpine:latest
 
 # Instalando postfix
-RUN apk add --update bash postfix postfix-policyd-spf-perl && rm -rf /var/cache/apk/*
+RUN apk add --update bash postfix postfix-policyd-spf-perl busybox-extras && rm -rf /var/cache/apk/*
 
 # adicionando el main.cf y master.cf
 COPY *.cf /etc/postfix/
