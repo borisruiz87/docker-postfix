@@ -708,7 +708,7 @@ smtpd_tls_received_header = yes
 # Para la autenticacion
 smtpd_sasl_auth_enable = yes
 smtpd_sasl_type = dovecot
-smtpd_sasl_path = private/auth
+smtpd_sasl_path = inet:dovecot:12345
 broken_sasl_auth_clients = yes
 smtpd_sasl_security_options = noanonymous, noplaintext
 smtpd_sasl_tls_security_options = noanonymous
