@@ -7,6 +7,10 @@ RUN apk add --update bash postfix postfix-policyd-spf-perl busybox-extras && rm 
 # adicionando el main.cf y master.cf
 COPY *.cf /etc/postfix/
 
+# adicionando las llaves .pem
+COPY postfix_public_cert.pem /etc/ssl/certs/
+COPY postfix_private_key.pem /etc/ssl/private/
+
 # incorporando la linea en el transport map y mapeandolo
 RUN echo "mycubantrip.com  lmtp:[dovecot]" >> /etc/postfix/transport && postmap /etc/postfix/transport
 
