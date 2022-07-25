@@ -15,7 +15,7 @@ COPY postfix_private_key.pem /etc/ssl/private/
 RUN echo "mycubantrip.com  lmtp:[dovecot]" >> /etc/postfix/transport && postmap /etc/postfix/transport
 
 # creando nuevamente la base de datos de los alias.
-RUN postalias
+RUN postalias /etc/postfix/aliases
 
 #adicionando el usuario para el uso en el spf
 RUN adduser -H -D -s /sbin/nologin policyd-spf
