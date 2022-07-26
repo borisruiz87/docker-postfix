@@ -27,6 +27,7 @@ VOLUME ["/var/log/"]
 EXPOSE 25
 
 COPY my_wrapper_script.sh my_wrapper_script.sh
+RUN ["chmod", "+x", "my_wrapper_script.sh"]
 CMD ./my_wrapper_script.sh
 
 #CMD ["sh","-c","./my_wrapper_script.sh"]
