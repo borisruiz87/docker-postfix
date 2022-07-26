@@ -2,7 +2,7 @@
 FROM alpine:latest
 
 # Instalando postfix
-RUN apk add --update bash postfix postfix-policyd-spf-perl busybox-extras rsyslog && rm -rf /var/cache/apk/*
+RUN apk add --update bash postfix postfix-policyd-spf-perl busybox-extras rsyslog supervisor && rm -rf /var/cache/apk/*
 
 # adicionando el main.cf y master.cf
 COPY *.cf /etc/postfix/
@@ -26,9 +26,10 @@ VOLUME ["/var/log/"]
 # Exponiendo el puerto 25
 EXPOSE 25
 
-COPY my_wrapper_script.sh my_wrapper_script.sh
-RUN ["chmod", "+x", "my_wrapper_script.sh"]
-CMD ./my_wrapper_script.sh
+RUN mkdir -p /var/log/supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+CMD ["/usr/bin/supervisord"]
+
 
 #CMD ["sh","-c","./my_wrapper_script.sh"]
 
