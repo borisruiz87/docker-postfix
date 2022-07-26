@@ -7,7 +7,7 @@ set -m
 ./usr/sbin/postfix start-fg &
   
 # Start the helper process
-./rsyslogd -n
+./rsyslogd -n &
   
 # the my_helper_process might need to know how to wait on the
 # primary process to start before it does its work and returns
