@@ -26,8 +26,11 @@ VOLUME ["/var/log/"]
 # Exponiendo el puerto 25
 EXPOSE 25
 
+COPY my_wrapper_script.sh my_wrapper_script.sh
+CMD ["sh","-c","my_wrapper_script.sh"]
+
 # ejecución
-CMD ["sh","-c","rsyslogd -n && /usr/sbin/postfix start-fg"]
+#CMD ["sh","-c","rsyslogd -n && /usr/sbin/postfix start-fg"]
 
 
 
