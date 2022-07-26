@@ -28,7 +28,7 @@ EXPOSE 25
 
 RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-CMD ["/usr/bin/supervisord"]
+CMD ["sh","-c","/usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf"]
 
 
 #CMD ["sh","-c","./my_wrapper_script.sh"]
