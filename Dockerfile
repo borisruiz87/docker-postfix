@@ -2,7 +2,7 @@
 FROM alpine:latest
 
 # Instalando postfix
-RUN apk add --update bash postfix postfix-policyd-spf-perl busybox-extras && rm -rf /var/cache/apk/*
+RUN apk add --update bash postfix postfix-policyd-spf-perl busybox-extras rsyslog && rm -rf /var/cache/apk/*
 
 # adicionando el main.cf y master.cf
 COPY *.cf /etc/postfix/
@@ -27,7 +27,7 @@ VOLUME ["/var/log/"]
 EXPOSE 25
 
 # ejecución
-CMD ["sh","-c","/usr/sbin/postfix start-fg"]
+CMD ["sh","-c","rsyslogd -n && /usr/sbin/postfix start-fg"]
 
 
 
