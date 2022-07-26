@@ -732,10 +732,6 @@ inet_protocols = ipv4
 shlib_directory = /usr/lib/postfix
 meta_directory = /etc/postfix
 
-# salida del log hacia fichero
-maillog_file=/var/log/maillog
-
-
 # Lineas de Dovecot.
 smtpd_use_tls=yes
 smtp_tls_session_cache_database = lmdb:${data_directory}/smtp_scache
