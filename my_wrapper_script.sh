@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Start the first process
-./usr/sbin/postfix start-fg
-  
+./rsyslogd -n &
+
 # Start the second process
-./rsyslogd -n
-  
+./usr/sbin/postfix start-fg
+
 # Wait for any process to exit
 wait -n
   
