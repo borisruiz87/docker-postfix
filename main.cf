@@ -97,7 +97,7 @@ mail_owner = postfix
 #
 #myhostname = host.domain.tld
 #myhostname = virtual.domain.tld
-myhostname = srv83139-206152.vps.etecsa.cu
+#myhostname = srv83139-206152.vps.etecsa.cu
 
 # The mydomain parameter specifies the local internet domain name.
 # The default is to use $myhostname minus the first component.
@@ -745,7 +745,7 @@ smtpd_tls_received_header = yes
 # Para la autenticacion
 smtpd_sasl_auth_enable = yes
 smtpd_sasl_type = dovecot
-smtpd_sasl_path = inet:dovecot:12345
+smtpd_sasl_path = inet:dovecot-internal-service.default:12345
 broken_sasl_auth_clients = yes
 smtpd_sasl_security_options = noanonymous, noplaintext
 smtpd_sasl_tls_security_options = noanonymous
@@ -766,6 +766,6 @@ smtpd_recipient_restrictions =
 # Milter configuration DKIM
 milter_default_action = accept
 milter_protocol = 6
-smtpd_milters = inet:opendkim:8891
+smtpd_milters = inet:opendkim-service.default:8891
 non_smtpd_milters = $smtpd_milters
 
