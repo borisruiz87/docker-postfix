@@ -12,7 +12,7 @@ COPY postfix_public_cert.pem /etc/ssl/certs/
 COPY postfix_private_key.pem /etc/ssl/private/
 
 # incorporando la linea en el transport map y mapeandolo
-RUN echo "mycubantrip.com  lmtp:[dovecot]" >> /etc/postfix/transport && postmap /etc/postfix/transport
+RUN echo "mycubantrip.com  lmtp:[dovecot-internal-service.default]" >> /etc/postfix/transport && postmap /etc/postfix/transport
 
 # creando nuevamente la base de datos de los alias.
 RUN postalias /etc/postfix/aliases
@@ -29,12 +29,6 @@ EXPOSE 25
 RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 CMD ["sh","-c","/usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf"]
-
-
-#CMD ["sh","-c","./my_wrapper_script.sh"]
-
-# ejecución
-#CMD ["sh","-c","rsyslogd -n && /usr/sbin/postfix start-fg"]
 
 
 
