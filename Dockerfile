@@ -12,7 +12,7 @@ COPY postfix_public_cert.pem /etc/ssl/certs/
 COPY postfix_private_key.pem /etc/ssl/private/
 
 # incorporando la linea en el transport map y mapeandolo
-RUN echo "mycubantrip.com  lmtp:[dovecot-internal-service.default]" >> /etc/postfix/transport && postmap /etc/postfix/transport
+RUN echo "mycubantrip.com  lmtp:[dovecot-internal-service.default.svc.cluster.local]" >> /etc/postfix/transport && postmap /etc/postfix/transport
 
 # creando nuevamente la base de datos de los alias.
 RUN postalias /etc/postfix/aliases
