@@ -121,7 +121,6 @@ mydomain = othar.cu
 # to recipient addresses that have no @domain part.
 #
 #myorigin = $myhostname
-myorigin = $mydomain
 
 # RECEIVING MAIL
 
@@ -183,8 +182,8 @@ inet_interfaces = all
 # See also below, section "REJECTING MAIL FOR UNKNOWN LOCAL USERS".
 #
 
-mydestination = $myhostname, localhost
-#mydestination = $myhostname, localhost.$mydomain, localhost
+#mydestination = $myhostname, localhost
+mydestination = $myhostname, localhost.$mydomain, localhost
 #mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
 #mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain,
 #	mail.$mydomain, www.$mydomain, ftp.$mydomain
@@ -322,7 +321,8 @@ mynetworks_style = host
 # permit_mx_backup restriction description in postconf(5).
 #
 #relay_domains = 
-relay_domains = $mydomain
+#relay_domains = $mydomain
+relay_domains = lmdb:/etc/postfix/relay_domains
 
 # INTERNET OR INTRANET
 
