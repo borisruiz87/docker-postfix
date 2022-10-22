@@ -12,7 +12,7 @@ COPY postfix_public_cert.pem /etc/ssl/certs/
 COPY postfix_private_key.pem /etc/ssl/private/
 
 # incorporando la linea en el transport map y mapeandolo
-RUN echo "othar.cu  lmtp:[dovecot]" >> /etc/postfix/transport && postmap /etc/postfix/transport
+RUN echo "othar.cu  lmtp:[dovecot]" >> /etc/postfix/transport && RUN echo "fuegoenterprises.cu  lmtp:[dovecot]" >> /etc/postfix/transport && postmap /etc/postfix/transport
 
 #incorporando el relay_domains
 RUN touch /etc/postfix/relay_domains && RUN echo "othar.cu  OK" >> /etc/postfix/relay_domains && RUN echo "fuegoenterprises.cu  OK" >> /etc/postfix/relay_domains && postmap /etc/postfix/relay_domains
