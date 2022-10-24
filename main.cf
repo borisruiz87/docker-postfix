@@ -750,7 +750,7 @@ broken_sasl_auth_clients = yes
 smtpd_sasl_security_options = noanonymous, noplaintext
 smtpd_sasl_tls_security_options = noanonymous
 smtpd_tls_auth_only = yes
-smtpd_sasl_local_domain = $mydomain
+#smtpd_sasl_local_domain = $mydomain
 smtpd_sasl_authenticated_header = yes
 	
 	
