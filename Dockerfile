@@ -7,6 +7,9 @@ RUN apk add --update bash postfix postfix-policyd-spf-perl busybox-extras rsyslo
 # adicionando el main.cf y master.cf
 COPY *.cf /etc/postfix/
 
+# adicionando el virtual para los virtual alias (listas)
+COPY virtual /etc/postfix/
+
 # adicionando las llaves .pem
 COPY postfix_public_cert.pem /etc/ssl/certs/
 COPY postfix_private_key.pem /etc/ssl/private/
@@ -17,8 +20,8 @@ RUN echo "othar.cu  lmtp:[dovecot]" >> /etc/postfix/transport && echo "fuegoente
 #incorporando el relay_domains
 RUN touch /etc/postfix/relay_domains && echo "othar.cu  OK" >> /etc/postfix/relay_domains && echo "fuegoenterprises.cu  OK" >> /etc/postfix/relay_domains && postmap /etc/postfix/relay_domains
 
-# creando nuevamente la base de datos de los alias.
-RUN postalias /etc/postfix/aliases
+# creando nuevamente la base de datos de los alias y la base de datos de los virtual alias (listas).
+RUN postalias /etc/postfix/aliases && postmap /etc/postfix/virtual
 
 #adicionando el usuario para el uso en el spf
 RUN adduser -H -D -s /sbin/nologin policyd-spf
