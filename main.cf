@@ -769,3 +769,6 @@ milter_protocol = 6
 smtpd_milters = inet:opendkim:8891
 non_smtpd_milters = $smtpd_milters
 
+# incorporando virtual alias para listas de correo
+virtual_alias_maps = lmdb:/etc/postfix/virtual
+
