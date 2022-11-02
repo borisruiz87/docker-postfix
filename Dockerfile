@@ -2,7 +2,7 @@
 FROM alpine:latest
 
 # Instalando postfix
-RUN apk add --update bash postfix postfix-policyd-spf-perl busybox-extras rsyslog supervisor && rm -rf /var/cache/apk/*
+RUN apk add --update bash postfix postfix-policyd-spf-perl busybox-extras rsyslog tzdata supervisor && rm -rf /var/cache/apk/*
 
 # adicionando el main.cf y master.cf
 COPY *.cf /etc/postfix/
@@ -13,6 +13,9 @@ COPY virtual /etc/postfix/
 # adicionando las llaves .pem
 COPY postfix_public_cert.pem /etc/ssl/certs/
 COPY postfix_private_key.pem /etc/ssl/private/
+
+# incorporando la zona horaria de Cuba
+RUN  cp /usr/share/zoneinfo/Cuba /etc/localtime
 
 # incorporando la linea en el transport map y mapeandolo
 RUN echo "othar.cu  lmtp:[dovecot]" >> /etc/postfix/transport && echo "fuegoenterprises.cu  lmtp:[dovecot]" >> /etc/postfix/transport && postmap /etc/postfix/transport
