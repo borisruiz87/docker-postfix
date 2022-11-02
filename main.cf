@@ -761,6 +761,7 @@ policyd-spf_time_limit = 3600
 smtpd_recipient_restrictions =
    permit_mynetworks,
    permit_sasl_authenticated,
+   check_policy_service inet:dovecot:12340,
    check_policy_service unix:private/policyd-spf
    
 # Milter configuration DKIM
