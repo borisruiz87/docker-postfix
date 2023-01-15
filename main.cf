@@ -322,7 +322,7 @@ mynetworks_style = host
 #
 #relay_domains = 
 #relay_domains = $mydomain
-relay_domains = lmdb:/etc/postfix/domains/relay_domains
+relay_domains = lmdb:/etc/postfix/relay_domains
 
 # INTERNET OR INTRANET
 
@@ -396,7 +396,7 @@ relay_domains = lmdb:/etc/postfix/domains/relay_domains
 # See the discussion in the ADDRESS_REWRITING_README document.
 
 # transport_maps = hash:/etc/postfix/transport
-transport_maps = lmdb:/etc/postfix/domains/transport
+transport_maps = lmdb:/etc/postfix/transport
 
 # ALIAS DATABASE
 #
@@ -771,5 +771,5 @@ smtpd_milters = inet:opendkim-service.llanio-kubernetes.svc.cluster.local:8891
 non_smtpd_milters = $smtpd_milters
 
 # incorporando virtual alias para listas de correo
-virtual_alias_maps = lmdb:/etc/postfix/domains/virtual
+virtual_alias_maps = lmdb:/etc/postfix/virtual
 
