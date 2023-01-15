@@ -5,7 +5,7 @@ FROM alpine:latest
 RUN apk add --update bash postfix postfix-policyd-spf-perl busybox-extras rsyslog tzdata supervisor && rm -rf /var/cache/apk/*
 
 # creando el folder para poner el configmap
-RUN mkdir -p /etc/postfix/domains $$ chmod -R 755 /etc/postfix/domains
+RUN mkdir -p /etc/postfix/domains
 
 # adicionando el main.cf y master.cf
 COPY *.cf /etc/postfix/
