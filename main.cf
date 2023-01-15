@@ -322,7 +322,7 @@ mynetworks_style = host
 #
 #relay_domains = 
 #relay_domains = $mydomain
-relay_domains = lmdb:/etc/postfix/relay_domains
+relay_domains = lmdb:/etc/postfix/domains/relay_domains
 
 # INTERNET OR INTRANET
 
@@ -396,7 +396,7 @@ relay_domains = lmdb:/etc/postfix/relay_domains
 # See the discussion in the ADDRESS_REWRITING_README document.
 
 # transport_maps = hash:/etc/postfix/transport
-transport_maps = lmdb:/etc/postfix/transport
+transport_maps = lmdb:/etc/postfix/domains/transport
 
 # ALIAS DATABASE
 #
@@ -745,7 +745,7 @@ smtpd_tls_received_header = yes
 # Para la autenticacion
 smtpd_sasl_auth_enable = yes
 smtpd_sasl_type = dovecot
-smtpd_sasl_path = inet:dovecot:12345
+smtpd_sasl_path = inet:dovecot-internal-service.llanio-kubernetes.svc.cluster.local:12345
 broken_sasl_auth_clients = yes
 smtpd_sasl_security_options = noanonymous, noplaintext
 smtpd_sasl_tls_security_options = noanonymous
@@ -761,15 +761,15 @@ policyd-spf_time_limit = 3600
 smtpd_recipient_restrictions =
    permit_mynetworks,
    permit_sasl_authenticated,
-   check_policy_service inet:dovecot:12340,
+   check_policy_service inet:dovecot-internal-service.llanio-kubernetes.svc.cluster.local:12340,
    check_policy_service unix:private/policyd-spf
    
 # Milter configuration DKIM
 milter_default_action = accept
 milter_protocol = 6
-smtpd_milters = inet:opendkim:8891
+smtpd_milters = inet:opendkim-service.llanio-kubernetes.svc.cluster.local:8891
 non_smtpd_milters = $smtpd_milters
 
 # incorporando virtual alias para listas de correo
-virtual_alias_maps = lmdb:/etc/postfix/virtual
+virtual_alias_maps = lmdb:/etc/postfix/domains/virtual
 
