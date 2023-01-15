@@ -21,7 +21,7 @@ COPY postfix_private_key.pem /etc/ssl/private/
 RUN  cp /usr/share/zoneinfo/Cuba /etc/localtime
 
 # eliminando al transport por default
-RUN rm -f /etc/postfix/transport && /etc/postfix/virtual
+RUN rm -f /etc/postfix/transport && rm -f /etc/postfix/virtual
 
 # incorporando la linea en el transport map y mapeandolo
 # RUN echo "othar.cu  lmtp:[dovecot-internal-service.llanio-kubernetes.svc.cluster.local]" >> /etc/postfix/transport && echo "fuegoenterprises.cu  lmtp:[dovecot-internal-service.llanio-kubernetes.svc.cluster.local]" >> /etc/postfix/transport && mv /etc/postfix/transport /etc/postfix/domains/ && postmap /etc/postfix/domains/transport
